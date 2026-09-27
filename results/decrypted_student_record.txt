@@ -1,0 +1,5 @@
+Student ID: SAMPLE001
+Name: Test Student
+Programme: Electronic and Telecommunication Technology
+Campus: Main Campus
+Status: Active
