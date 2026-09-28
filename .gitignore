@@ -1,4 +1,6 @@
 sample_student_record.txt
+results/encrypted_student_record.bin
+results/decrypted_student_record.txt
 results/modified_student_record.txt
 src/__pycache__/
 tests/__pycache__/
