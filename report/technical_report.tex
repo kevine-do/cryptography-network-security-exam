@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{array}
+\usepackage{hyperref}
+
+\title{Cryptography and Network Security Exam}
+\author{Kevine Kabarira}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This project assesses security risks in a polytechnic institute environment and demonstrates basic cryptography, file integrity checking, and network security controls. Sample data was used throughout the project and no real student records, passwords, or encryption keys were uploaded to the repository.
+
+\section{Risk Assessment}
+
+\subsection{Assets, Vulnerabilities and Consequences}
+
+\begin{center}
+\begin{tabular}{|p{3cm}|p{4cm}|p{5cm}|}
+\hline
+\textbf{Asset} & \textbf{Vulnerability} & \textbf{Consequence} \
+\hline
+Student records server & Guest network access & Unauthorised access to student records \
+\hline
+Staff accounts & Weak passwords & Account compromise \
+\hline
+File-transfer system & Unencrypted transfers & Data interception \
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Risk Ranking}
+
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{7cm}|}
+\hline
+\textbf{Risk} & \textbf{Likelihood} & \textbf{Impact} & \textbf{Reason} \
+\hline
+Guest access & High & High & Guests can reach sensitive records. \
+\hline
+Weak passwords & High & High & Weak passwords can be guessed or compromised. \
+\hline
+Unencrypted transfers & Medium & High & Data can be intercepted during transfer. \
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Recommended Controls}
+
+\begin{itemize}
+\item Guest access: Use firewall rules and network segmentation.
+\item Weak passwords: Enforce a strong password policy.
+\item Unencrypted transfers: Use SFTP.
+\end{itemize}
+
+\section{Python Security Toolkit}
+
+A Python security toolkit was developed to demonstrate encryption, decryption, hashing, integrity verification, and error handling.
+
+\subsection{Encryption}
+
+The toolkit uses Fernet symmetric encryption from the Python \texttt{cryptography} library. A sample student record was encrypted and saved as an encrypted output file.
+
+The encryption key was stored outside the GitHub repository to protect it from exposure.
+
+\subsection{Decryption and Verification}
+
+The encrypted file was successfully decrypted. The SHA-256 hash of the original file was compared with the SHA-256 hash of the decrypted file.
+
+The results were:
+
+\begin{verbatim}
+Original SHA-256:
+9072923fe0a1c93d2fe2f0f564281c78c0d6e7cb9ddb1a315578fcbaf428b877
+
+Decrypted SHA-256:
+9072923fe0a1c93d2fe2f0f564281c78c0d6e7cb9ddb1a315578fcbaf428b877
+
+Contents match: True
+Integrity check: PASS
+\end{verbatim}
+
+The matching hashes confirm that the decrypted file has the same contents as the original sample file.
+
+\subsection{Integrity Detection}
+
+A copy of the sample file was modified after the original hash was calculated. The hashes were:
+
+\begin{verbatim}
+Original hash:
+9072923fe0a1c93d2fe2f0f564281c78c0d6e7cb9ddb1a315578fcbaf428b877
+
+Modified file hash:
+50d29235c461aec22174106942a54ea16096fbb5a55aacdb52ba74150cdb9f
+
+Modified file detected: True
+\end{verbatim}
+
+This demonstrates that SHA-256 can detect changes to the file.
+
+\subsection{Error Handling}
+
+The toolkit was also tested with a missing input file. The test correctly raised a \texttt{FileNotFoundError} instead of allowing the program to fail unexpectedly.
+
+\section{Testing}
+
+Python's built-in \texttt{unittest} framework was used for testing.
+
+The tests included:
+
+\begin{enumerate}
+\item SHA-256 hash verification.
+\item Password strength checking.
+\item Missing-file error handling.
+\item Encryption and decryption execution.
+\item Integrity verification.
+\end{enumerate}
+
+The missing-file test produced:
+
+\begin{verbatim}
+Ran 1 test
+OK
+\end{verbatim}
+
+The main toolkit execution produced:
+
+\begin{verbatim}
+File encrypted successfully.
+File decrypted successfully.
+Contents match: True
+Integrity check: PASS
+\end{verbatim}
+
+\section{Network Traffic Filtering}
+
+Network traffic filtering was planned and tested in an authorised laboratory environment using a firewall configuration.
+
+The objective was to:
+
+\begin{enumerate}
+\item Block guest access to the protected records service.
+\item Permit authorised staff access to the specified laboratory service.
+\item Block other unauthorised inbound access to the service.
+\end{enumerate}
+
+The laboratory service used for testing was a Python HTTP service on TCP port 8080. Firewall rules and test results are documented in the project file \texttt{filter_tests.md}.
+
+\section{GitHub Repository}
+
+The complete project files are maintained in the GitHub repository:
+
+\begin{center}
+\url{https://github.com/kevine-do/cryptography-network-security-exam}
+\end{center}
+
+The repository contains the source code, tests, risk assessment, project documentation, and technical report.
+
+\section{Conclusion}
+
+The project identified important security risks and recommended suitable controls. A Python security toolkit was developed to encrypt and decrypt sample student data, calculate SHA-256 hashes, detect file modification, and handle missing files.
+
+The tests demonstrated successful encryption, decryption, integrity verification, and error handling. Network traffic filtering was also investigated in an authorised laboratory environment.
+
+The project demonstrates practical applications of cryptography, file integrity, access control, and network security.
+
+\end{document}
