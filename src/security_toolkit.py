@@ -5,6 +5,19 @@ from cryptography.fernet import Fernet
 
 KEY_FILE = r"C:\Users\kabal\security_exam_key.key"
 
+def check_password_strength(password):
+    if len(password) < 8:
+        return "Weak"
+
+    has_upper = any(char.isupper() for char in password)
+    has_lower = any(char.islower() for char in password)
+    has_digit = any(char.isdigit() for char in password)
+    has_special = any(not char.isalnum() for char in password)
+
+    if has_upper and has_lower and has_digit and has_special:
+        return "Strong"
+
+    return "Weak"
 
 def load_key():
     if not os.path.exists(KEY_FILE):
